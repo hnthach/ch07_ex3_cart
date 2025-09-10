@@ -1,0 +1,99 @@
+/* Reset mặc định */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Tiêu đề */
+h1 {
+    color: #00695c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Bảng */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto 20px auto;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #009688;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Nút bấm */
+input[type="submit"],
+button,
+a.button {
+    background-color: #009688;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+a.button:hover {
+    background-color: #00796b;
+}
+
+/* Link Remove Item */
+a {
+    color: #e53935;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Form checkout */
+form {
+    width: 60%;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
