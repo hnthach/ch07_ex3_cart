@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ch07_ex3_cart:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/ch07_ex3_cart_war</output-path>
+    <root id="archive" name="ch07_ex3_cart_war.war">
+      <element id="artifact" artifact-name="ch07_ex3_cart:war exploded" />
+    </root>
+  </artifact>
+</component>

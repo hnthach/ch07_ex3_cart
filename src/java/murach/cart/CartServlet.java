@@ -14,7 +14,6 @@ public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
-        // Gọi lại doPost để xử lý chung cho GET và POST
         doPost(request, response);
     }
 
@@ -22,17 +21,18 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 
         String url = "/index.jsp";
         ServletContext sc = getServletContext();
 
-        // lấy action hiện tại
         String action = request.getParameter("action");
         if (action == null) {
-            action = "cart";  // mặc định
+            action = "cart";
         }
 
-        // xử lý action
         if (action.equals("shop")) {
             url = "/index.jsp";
         }
@@ -53,7 +53,7 @@ public class CartServlet extends HttpServlet {
                     quantity = 1;
                 }
             } catch (NumberFormatException nfe) {
-                // giữ mặc định = 1
+                quantity = 1;
             }
 
             String path = sc.getRealPath("/WEB-INF/products.txt");
@@ -63,20 +63,31 @@ public class CartServlet extends HttpServlet {
             lineItem.setProduct(product);
             lineItem.setQuantity(quantity);
 
-            if (quantity > 0) {
-                cart.addItem(lineItem);
-            } else if (quantity == 0) {
+            // phân biệt Add, Update và Remove
+            String update = request.getParameter("update");
+
+            if (quantity == 0) {
+                //  nếu nhập 0 → remove
                 cart.removeItem(lineItem);
+            } else if (update != null && update.equals("true")) {
+                // update số lượng mới
+                cart.updateItem(lineItem);
+            } else {
+                //  add to cart (cộng dồn)
+                cart.addItem(lineItem);
             }
 
             session.setAttribute("cart", cart);
             url = "/cart.jsp";
         }
         else if (action.equals("checkout")) {
+            // chuyển sang trang checkout
             url = "/checkout.jsp";
-        }
 
-        sc.getRequestDispatcher(url)
-                .forward(request, response);
+            // ✅ clear giỏ hàng sau khi checkout
+            HttpSession session = request.getSession();
+            session.removeAttribute("cart");
+        }
+        sc.getRequestDispatcher(url).forward(request, response);
     }
 }

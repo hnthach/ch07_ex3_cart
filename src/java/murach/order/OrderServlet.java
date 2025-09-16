@@ -15,6 +15,7 @@ public class OrderServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 
         // Lấy dữ liệu từ form checkout
         String name = request.getParameter("name");

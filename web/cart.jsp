@@ -1,7 +1,8 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <meta charset="utf-8">
     <title>Murach's Java Servlets and JSP</title>
     <link rel="stylesheet" href="styles/main.css" type="text/css"/>
@@ -9,8 +10,6 @@
 <body>
 
 <h1>Your cart</h1>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <table>
     <tr>
@@ -23,11 +22,13 @@
 
     <c:forEach var="item" items="${cart.items}">
         <tr>
-            <!-- Update: vẫn dùng POST -->
+            <!-- Update số lượng -->
             <td>
                 <form action="cart" method="post">
+                    <input type="hidden" name="action" value="cart">
                     <input type="hidden" name="productCode" value="${item.product.code}">
-                    <input type="text" name="quantity" value="${item.quantity}" id="quantity">
+                    <input type="hidden" name="update" value="true"> <!-- ✅ phân biệt update -->
+                    <input type="number" name="quantity" value="${item.quantity}" min="0">
                     <input type="submit" value="Update">
                 </form>
             </td>
@@ -36,7 +37,7 @@
             <td>${item.product.priceCurrencyFormat}</td>
             <td>${item.totalCurrencyFormat}</td>
 
-            <!-- Remove: dùng URL rewriting (GET) -->
+            <!-- Remove Item -->
             <td>
                 <a href="cart?action=cart&productCode=${item.product.code}&quantity=0">
                     Remove Item
@@ -49,15 +50,16 @@
 <p><b>To change the quantity</b>, enter the new quantity
     and click on the Update button.</p>
 
-<form action="" method="post">
+<!-- Nút Continue Shopping -->
+<form action="cart" method="post">
     <input type="hidden" name="action" value="shop">
     <input type="submit" value="Continue Shopping">
 </form>
 
-<!-- Thêm nút Mua hàng (Checkout) -->
+<!-- Nút Checkout -->
 <form action="cart" method="post">
     <input type="hidden" name="action" value="checkout">
-    <input type="submit" value="Mua hàng">
+    <input type="submit" value="Checkout">
 </form>
 
 </body>

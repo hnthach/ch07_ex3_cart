@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 </head>
 <body>
-<h1>Xác nhận đơn hàng</h1>
+<div class="container">
+    <h1>Thank you for your order 🎉</h1>
 
-<p>Cảm ơn bạn, <b>${name}</b>!</p>
-<p>Email: ${email}</p>
-<p>Địa chỉ giao hàng: ${address}</p>
+    <p><b>Name:</b> ${param.name}</p>
+    <p><b>Email:</b> ${param.email}</p>
+    <p><b>Address:</b> ${param.address}</p>
+    <p><b>Payment Method:</b> ${param.paymentMethod}</p>
 
-<p>Đơn hàng của bạn đã được ghi nhận thành công 🎉</p>
-
-<a href="index.jsp" class="button">Tiếp tục mua sắm</a>
+    <form action="cart" method="post">
+        <input type="hidden" name="action" value="shop">
+        <input type="submit" value="Continue Shopping">
+    </form>
+</div>
 </body>
 </html>
